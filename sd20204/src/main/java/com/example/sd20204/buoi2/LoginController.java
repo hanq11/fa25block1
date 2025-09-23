@@ -20,7 +20,7 @@ public class LoginController {
 //            Model model
 //    ) {
 //        model.addAttribute("ten", ten);
-//        model.addAttribute("matKhau", matKhau);
+//        model.addAttribute("matKhau", matKh   au);
 //        return "/buoi2/thongTin";
 //    }
 
