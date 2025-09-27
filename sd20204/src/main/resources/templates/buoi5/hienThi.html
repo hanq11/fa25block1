@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    Bang thong tin:
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ten</th>
+                <th>Diem</th>
+                <th>Gioi tinh</th>
+            </tr>
+        </thead>
+        <tbody>
+            <th:block th:each="sinhVien : ${danhSach}">
+                <tr th:object="${sinhVien}">
+                    <td th:text="*{id}"></td>
+                    <td th:text="*{ten}"></td>
+                    <td th:text="*{diem}"></td>
+                    <td th:text="*{gioiTinh}"></td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+</body>
+</html>
