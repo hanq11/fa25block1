@@ -3,6 +3,7 @@ package com.example.sd20204.buoi5.service;
 import com.example.sd20204.buoi5.model.SinhVien;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,11 +11,11 @@ import java.util.List;
 public class SinhVienService {
     private List<SinhVien> danhSach = null;
     public SinhVienService() {
-        danhSach = Arrays.asList(
+        danhSach = new ArrayList(Arrays.asList(
           new SinhVien(1, "Nguyen Van A", 5.6f, true),
           new SinhVien(2, "Nguyen Van B", 6.6f, true),
           new SinhVien(3, "Nguyen Thi C", 8.6f, false)
-        );
+        ));
     }
     public List<SinhVien> getAll() {
         return danhSach;
