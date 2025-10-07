@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  Thong tin nhan vien:
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Ten</th>
+        <th>Luong</th>
+        <th>Gioi tinh</th>
+      </tr>
+    </thead>
+    <tbody>
+      <th:block th:each="nv : ${danhSach}">
+        <tr th:object="${nv}">
+          <td th:text="*{id}"></td>
+          <td th:text="*{ten}"></td>
+          <td th:text="*{luong}"></td>
+          <td th:text="*{gioiTinh == true ? 'Nữ' : 'Nam'}"></td>
+        </tr>
+      </th:block>
+    </tbody>
+  </table>
+</body>
+</html>
