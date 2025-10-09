@@ -5,6 +5,16 @@
     <title>Title</title>
 </head>
 <body>
+  Them nhan vien:
+  <form action="/nhan-vien/them" method="post">
+    Ten: <input type="text" name="ten"> <br>
+    Luong: <input type="text" name="luong"> <br>
+    Gioi tinh:
+      Nam: <input type="radio" name="gioiTinh" value="false">
+      Nu: <input type="radio" name="gioiTinh" value="true">
+    <br>
+    <button>Submit</button>
+  </form>
   Thong tin nhan vien:
   <table>
     <thead>
@@ -13,6 +23,7 @@
         <th>Ten</th>
         <th>Luong</th>
         <th>Gioi tinh</th>
+        <th>Hanh dong</th>
       </tr>
     </thead>
     <tbody>
@@ -22,6 +33,12 @@
           <td th:text="*{ten}"></td>
           <td th:text="*{luong}"></td>
           <td th:text="*{gioiTinh == true ? 'Nữ' : 'Nam'}"></td>
+          <td>
+<!--            path variable-->
+            <a th:href="@{|/nhan-vien/update/*{id}|}">View update</a>
+<!--            query param-->
+            <a th:href="@{|/nhan-vien/delete?id=*{id}|}">Delete</a>
+          </td>
         </tr>
       </th:block>
     </tbody>
