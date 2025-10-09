@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    Them san pham:
+    <form action="/san-pham/them" method="post">
+        Ten: <input type="text" name="ten"> <br>
+        Gia: <input type="text" name="gia"> <br>
+        Con bao hanh:
+            Con: <input type="radio" name="conBaoHanh" value="true">
+            Het: <input type="radio" name="conBaoHanh" value="false">
+        <br>
+        Danh muc:
+            <select name="danhMuc">
+                <th:block th:each="danhMuc : ${listDanhMuc}">
+                    <option th:value="${danhMuc.id}" th:text="${danhMuc.ten}"></option>
+                </th:block>
+            </select>
+        <br>
+        <button>Submit</button>
+    </form>
+    <br>
+    Bang san pham:
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ten</th>
+                <th>Gia</th>
+                <th>Con bao hanh</th>
+                <th>Danh muc</th>
+            </tr>
+        </thead>
+        <tbody>
+            <th:block th:each="sp : ${listSanPham}">
+                <tr>
+                    <td th:text="${sp.id}"></td>
+                    <td th:text="${sp.ten}"></td>
+                    <td th:text="${sp.gia}"></td>
+                    <td th:text="${sp.conBaoHanh  == true ? 'Con' : 'Het'}"></td>
+                    <td th:text="${sp.danhMuc.ten}"></td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+</body>
+</html>
