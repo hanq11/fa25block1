@@ -5,6 +5,12 @@
     <title>Title</title>
 </head>
 <body>
+    Tim kiem san pham theo ten va gia:
+    <form action="/san-pham/tim-kiem" method="get">
+        Ten: <input type="text" name="ten"> <br>
+        <button>Submit</button>
+    </form>
+    <br>
     Them san pham:
     <form action="/san-pham/them" method="post">
         Ten: <input type="text" name="ten"> <br>
@@ -32,6 +38,7 @@
                 <th>Gia</th>
                 <th>Con bao hanh</th>
                 <th>Danh muc</th>
+                <th>Hanh dong</th>
             </tr>
         </thead>
         <tbody>
@@ -42,6 +49,10 @@
                     <td th:text="${sp.gia}"></td>
                     <td th:text="${sp.conBaoHanh == true ? 'Con' : 'Khong' }"></td>
                     <td th:text="${sp.danhMuc.ten}"></td>
+                    <td>
+                        <a th:href="@{|/san-pham/view-update/${sp.id}|}">View update</a>
+                        <a th:href="@{|/san-pham/xoa?id=${sp.id}|}">Xoa</a>
+                    </td>
                 </tr>
             </th:block>
         </tbody>

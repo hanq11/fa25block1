@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    Bang san pham:
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Ten</th>
+            <th>Gia</th>
+            <th>Con bao hanh</th>
+            <th>Danh muc</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="sp : ${page.getContent()}">
+            <tr>
+                <td th:text="${sp.id}"></td>
+                <td th:text="${sp.ten}"></td>
+                <td th:text="${sp.gia}"></td>
+                <td th:text="${sp.conBaoHanh == true ? 'Con' : 'Khong' }"></td>
+                <td th:text="${sp.danhMuc.ten}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+    <a th:href="@{|/san-pham/phan-trang?page=0|}">First</a>
+    <a th:href="@{|/san-pham/phan-trang?page=${page.isFirst() ? 0 : page.getNumber() - 1}|}">Prev</a>
+    <a th:href="@{|/san-pham/phan-trang?page=${page.isLast() ? page.getTotalPages() - 1 : page.getNumber() + 1}|}">Next</a>
+    <a th:href="@{|/san-pham/phan-trang?page=${page.getTotalPages() - 1}|}">Last</a>
+</body>
+</html>
