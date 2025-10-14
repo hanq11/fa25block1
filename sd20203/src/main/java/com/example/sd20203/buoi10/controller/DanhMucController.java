@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/danh-muc")
 public class DanhMucController {
-    @Autowired
+    @Autowired //Dependency injection
     DanhMucService danhMucService;
 
     @GetMapping("/hien-thi")
