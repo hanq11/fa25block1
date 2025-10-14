@@ -22,7 +22,7 @@ public class SanPhamController {
     @Autowired
     SanPhamRepository sanPhamRepository;
 
-    @Autowired
+    @Autowired // DI
     DanhMucRepository danhMucRepository;
 
     @ModelAttribute("listDanhMuc")
