@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    Them sach:
+    <form action="/them" method="post">
+        Ten sach: <input type="text" name="tenSach"> <br>
+        Nam xuat ban: <input type="text" name="namXuatBan"> <br>
+        Dang cho muon:
+            Dang cho muon: <input type="radio" name="dangChoMuon" value="true">
+            Khong :<input type="radio" name="dangChoMuon" value="false">
+        <br>
+        Tac gia: <select name="tacGia">
+            <th:block th:each="tacGia : ${listTacGia}">
+                <option th:value="${tacGia.id}" th:text="${tacGia.tenTacGia}"></option>
+            </th:block>
+        </select> <br>
+        <button>Them sach</button>
+    </form>
+    <br>
+    Bang sach:
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ten sach</th>
+                <th>Nam xuat ban</th>
+                <th>Dang cho muon</th>
+                <th>Ten tac gia</th>
+                <th>Nam sinh tac gia</th>
+                <th>Hanh dong</th>
+            </tr>
+        </thead>
+        <tbody>
+            <th:block th:each="sach : ${listSach}">
+                <tr>
+                    <td th:text="${sach.id}"></td>
+                    <td th:text="${sach.tenSach}"></td>
+                    <td th:text="${sach.namXuatBan}"></td>
+                    <td th:text="${sach.dangChoMuon ? 'Dang cho muon' : 'Khong'}"></td>
+                    <td th:text="${sach.tacGia.tenTacGia}"></td>
+                    <td th:text="${sach.tacGia.namSinh}"></td>
+                    <td>
+<!--                        path variable-->
+                        <a th:href="@{|/view-update/${sach.id}|}">View update</a>
+<!--                        query param-->
+                        <a th:href="@{|/xoa?id=${sach.id}|}">Xoa</a>
+                    </td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+</body>
+</html>

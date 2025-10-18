@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    Update sach:
+    <form action="/update" method="post">
+        Id: <input type="text" name="id" th:value="${sach.id}"> <br>
+        Ten sach: <input type="text" name="tenSach" th:value="${sach.tenSach}"> <br>
+        Nam xuat ban: <input type="text" name="namXuatBan" th:value="${sach.namXuatBan}"> <br>
+        Dang cho muon:
+        Dang cho muon: <input type="radio" name="dangChoMuon" value="true" th:checked="${sach.dangChoMuon}">
+        Khong :<input type="radio" name="dangChoMuon" value="false" th:checked="${!sach.dangChoMuon}">
+        <br>
+        Tac gia: <select name="tacGia">
+        <th:block th:each="tacGia : ${listTacGia}">
+            <option th:value="${tacGia.id}" th:text="${tacGia.tenTacGia}" th:selected="${sach.tacGia.id == tacGia.id}"></option>
+        </th:block>
+    </select> <br>
+        <button>Sua sach</button>
+    </form>
+</body>
+</html>
