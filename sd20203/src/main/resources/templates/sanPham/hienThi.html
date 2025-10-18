@@ -12,18 +12,23 @@
     </form>
     <br>
     Them san pham:
-    <form action="/san-pham/them" method="post">
-        Ten: <input type="text" name="ten"> <br>
-        Gia: <input type="text" name="gia"> <br>
-        Con bao hanh:
-            Con: <input type="radio" name="conBaoHanh" value="true">
-            Khong: <input type="radio" name="conBaoHanh" value="false">
+    <form action="/san-pham/them" method="post" th:object="${sp}">
+        Ten: <input type="text" th:field="*{ten}"> <i th:errors="*{ten}"></i>
         <br>
-        Danh muc: <select name="danhMuc">
+        Gia: <input type="text" th:field="*{gia}"> <i th:errors="*{gia}"></i>
+        <br>
+        Con bao hanh:
+            Con: <input type="radio" th:field="*{conBaoHanh}" value="true">
+            Khong: <input type="radio" th:field="*{conBaoHanh}" value="false">
+            <i th:errors="*{conBaoHanh}"></i>
+        <br>
+        Danh muc: <select th:field="*{danhMuc}">
+            <option value="">-- Please select an option --</option>
             <th:block th:each="danhMuc : ${listDanhMuc}">
                 <option th:value="${danhMuc.id}" th:text="${danhMuc.ten}"></option>
             </th:block>
         </select>
+        <i th:errors="*{danhMuc}"></i>
         <br>
         <button>Submit</button>
     </form>
