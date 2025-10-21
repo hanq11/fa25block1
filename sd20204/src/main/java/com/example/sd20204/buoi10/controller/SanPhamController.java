@@ -4,6 +4,7 @@ import com.example.sd20204.buoi10.model.DanhMuc;
 import com.example.sd20204.buoi10.model.SanPham;
 import com.example.sd20204.buoi10.repository.DanhMucRepository;
 import com.example.sd20204.buoi10.repository.SanPhamRepository;
+import jakarta.validation.Valid;
 import org.hibernate.dialect.function.array.HSQLArrayConstructorFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,7 +33,7 @@ public class SanPhamController {
     }
 
     @GetMapping("/hien-thi")
-    public String hienThi(Model model) {
+    public String hienThi(Model model, @ModelAttribute("sp") SanPham sanPham) {
         model.addAttribute("listSanPham", sanPhamRepository.findAll());
 //        model.addAttribute("listDanhMuc", danhMucRepository.findAll());
         System.out.println("JPQL: ");
@@ -42,7 +44,10 @@ public class SanPhamController {
     }
 
     @PostMapping("/them")
-    public String themSanPham(SanPham sanPham) {
+    public String themSanPham(Model model, @ModelAttribute("sp") @Valid SanPham sanPham, Errors errors) {
+        if(errors.hasErrors()) {
+            return "/sanPham/hienThi";
+        }
         sanPhamRepository.save(sanPham);
         return "redirect:/san-pham/hien-thi";
     }

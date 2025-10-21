@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        i {
+            color: red;
+        }
+    </style>
 </head>
+
 <body>
     Tim kiem:
     <form action="/san-pham/tim-kiem" method="get">
@@ -12,19 +18,24 @@
     </form>
     <br>
     Them san pham:
-    <form action="/san-pham/them" method="post">
-        Ten: <input type="text" name="ten"> <br>
-        Gia: <input type="text" name="gia"> <br>
+    <form action="/san-pham/them" method="post" th:object="${sp}">
+        Ten: <input type="text" th:field="*{ten}">  <i th:errors="*{ten}"></i>
+        <br>
+        Gia: <input type="text" th:field="*{gia}"> <i th:errors="*{gia}"></i>
+        <br>
         Con bao hanh:
-            Con: <input type="radio" name="conBaoHanh" value="true">
-            Het: <input type="radio" name="conBaoHanh" value="false">
+            Con: <input type="radio" th:field="*{conBaoHanh}" value="true">
+            Het: <input type="radio" th:field="*{conBaoHanh}" value="false">
+            <i th:errors="*{conBaoHanh}"></i>
         <br>
         Danh muc:
-            <select name="danhMuc">
+            <select th:field="*{danhMuc}">
+                <option value="">Vui long chon danh muc</option>
                 <th:block th:each="danhMuc : ${listDanhMuc}">
                     <option th:value="${danhMuc.id}" th:text="${danhMuc.ten}"></option>
                 </th:block>
             </select>
+            <i th:errors="*{danhMuc}"></i>
         <br>
         <button>Submit</button>
     </form>
